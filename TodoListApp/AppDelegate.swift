@@ -10,16 +10,20 @@ import UIKit
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
-
+    // Properties
     var window: UIWindow?
+    
+    // MARK: - Internal Methods
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
  
-        setupWindow()
+        setupWindow() // TODO: место где нужно что-то доделать
         
         return true
     }
 
+    // MARK: - Private Methods
+    
     private func setupWindow() {
         window = UIWindow(frame: UIScreen.main.bounds)
         
