@@ -18,4 +18,5 @@ struct ToDoModel: Codable {
 struct Todos: Codable {
     
     let todos: [ToDoModel]
+    let total: Int
 }

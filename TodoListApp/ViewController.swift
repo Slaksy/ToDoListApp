@@ -8,14 +8,22 @@
 import UIKit
 
 class ViewController: UIViewController {
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
+        todoService.getTodos { result in
+            switch result {
+            case .success(let todos):
+                print(todos)
+            case .failure(let error):
+                print(error)
+            }
+        }
         
         view.backgroundColor = .systemGreen
     }
-
-
+    
+    let todoService: TodoService = TodoService()
+    
 }
 

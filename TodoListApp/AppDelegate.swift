@@ -20,7 +20,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         setupWindow() // TODO: место где нужно что-то доделать
         
         return true
-    }
+    }	
 
     // MARK: - Private Methods
     
