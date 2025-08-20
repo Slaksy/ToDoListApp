@@ -27,7 +27,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     private func setupWindow() {
         window = UIWindow(frame: UIScreen.main.bounds)
         
-        let vc = ViewController()
+        let vc = TodoListVC()
         let navigationController = UINavigationController(rootViewController: vc)
         
         window?.rootViewController = navigationController

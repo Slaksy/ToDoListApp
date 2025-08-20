@@ -1,5 +1,5 @@
 //
-//  ViewController.swift
+//  TodoListVC.swift
 //  TodoListApp
 //
 //  Created by Дима Тарасов on 22.07.2025.
@@ -7,7 +7,22 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+final class TodoListVC: UIViewController {
+    
+    //MARK: Properties
+    
+    private let todoService: ITodoService
+    
+    //MARK: Init
+    
+      init() {
+         self.todoService = TodoService.shared
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -22,8 +37,4 @@ class ViewController: UIViewController {
         
         view.backgroundColor = .systemGreen
     }
-    
-    let todoService: TodoService = TodoService()
-    
 }
-

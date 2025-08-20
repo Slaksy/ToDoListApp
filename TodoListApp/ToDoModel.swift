@@ -1,5 +1,5 @@
 //
-//  ToDoModel.swift
+//  TodoModel.swift
 //  TodoListApp
 //
 //  Created by Дима Тарасов on 24.07.2025.
@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct ToDoModel: Codable {
+struct TodoModel: Codable {
     
     let id: Int
     let todo: String
@@ -17,6 +17,6 @@ struct ToDoModel: Codable {
 
 struct Todos: Codable {
     
-    let todos: [ToDoModel]
+    let todos: [TodoModel]
     let total: Int
 }
