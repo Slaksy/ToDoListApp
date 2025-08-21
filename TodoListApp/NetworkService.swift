@@ -2,19 +2,19 @@ import Foundation
 
 protocol INetworkService {
     
-    func request<T: Decodable>(_ endpoint: IEndpoint, completion: @escaping (Result<T, NetworkError>) -> Void)
+    func request<T: Decodable>(_ endpoint: IEndPoint, completion: @escaping (Result<T, NetworkError>) -> Void)
 }
 
 final class NetworkService {
     
-    //MARK: Properties
+    // MARK: - Properties
     
     static let shared: INetworkService = NetworkService()
     
     private let session: URLSession
     private let decoder: JSONDecoder
     
-    //MARK: Init
+    // MARK: - Init
     
     private init(){
         self.session = .shared
@@ -22,18 +22,18 @@ final class NetworkService {
     }
 }
 
-// MARK: INetworkService
+// MARK: - INetworkService
 
 extension NetworkService: INetworkService {
     
-    func request<T: Decodable>(_ endpoint: IEndpoint, completion: @escaping (Result<T, NetworkError>) -> Void) {
+    func request<T: Decodable>(_ endpoint: IEndPoint, completion: @escaping (Result<T, NetworkError>) -> Void) {
             
-            guard let url = endpoint.url else {
-                completion(.failure(.invalidURL))
-                return
-            }
+        guard let url = endpoint.url else {
+            completion(.failure(.invalidURL))
+            return
+        }
             
-            var request =  URLRequest(url: url)
+            var request = URLRequest(url: url)
             request.httpMethod = endpoint.method.rawValue
             request.allHTTPHeaderFields = endpoint.headers
             
@@ -76,7 +76,15 @@ extension NetworkService: INetworkService {
         }
 }
 
-enum NetworkError: Error {
+// MARK: - IAppError
+
+protocol IAppError: Error {
+    var localizedDescription: String { get }
+}
+
+// MARK: - NetworkError
+
+enum NetworkError: IAppError {
     case invalidURL
     case networkError(Error)
     case invalidResponse
@@ -96,6 +104,8 @@ enum NetworkError: Error {
     }
 }
 
+// MARK: - HTTPMethod
+
 enum HTTPMethod: String {
     
     case get = "GET"
@@ -105,7 +115,9 @@ enum HTTPMethod: String {
     case delete = "DELETE"
 }
 
-protocol IEndpoint {
+// MARK: - IEndPoint
+
+protocol IEndPoint {
     
     var baseURL: String { get }
     var path: String { get }
@@ -114,35 +126,25 @@ protocol IEndpoint {
     var body: [String: Any]? { get }
 }
 
-    extension IEndpoint {
-    var url: URL? {
-        return URL (string: baseURL + path)
-    }
+//MARK: - extention IEndPoint
+
+    extension IEndPoint {
+        var url: URL? { URL (string: baseURL + path) }
 }
 
-enum DummyJsonEndpoint: IEndpoint {
+// MARK: - TodoEndpoint
+
+enum TodoEndpoint: IEndPoint {
     
     case todos
     
-    var baseURL: String {
-        return "https://dummyjson.com"
-    }
+    var baseURL: String { "https://dummyjson.com" }
     
-    var path: String {
-        return "/todos"
-    }
+    var path: String { "/todos" }
     
-    var method: HTTPMethod {
-        return .get
-    }
+    var method: HTTPMethod { .get }
     
-    var headers: [String : String]? {
-        return nil
-    }
+    var headers: [String : String]? { nil }
     
-    var body: [String : Any]? {
-        return nil
-    }
-    
+    var body: [String : Any]? { nil }
 }
-

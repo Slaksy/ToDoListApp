@@ -1,10 +1,3 @@
-//
-//  AppDelegate.swift
-//  TodoListApp
-//
-//  Created by Дима Тарасов on 22.07.2025.
-//
-
 import UIKit
 
 @main

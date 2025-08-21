@@ -1,22 +1,15 @@
-//
-//  TodoListVC.swift
-//  TodoListApp
-//
-//  Created by Дима Тарасов on 22.07.2025.
-//
-
 import UIKit
 
 final class TodoListVC: UIViewController {
     
-    //MARK: Properties
+    // MARK: - Properties
     
     private let todoService: ITodoService
     
-    //MARK: Init
+    // MARK: - Init
     
-      init() {
-         self.todoService = TodoService.shared
+    init() {
+        self.todoService = TodoService.shared
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -24,8 +17,19 @@ final class TodoListVC: UIViewController {
         fatalError("init(coder:) has not been implemented")
     }
     
+    // MARK: - viewDidLoad
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        view.backgroundColor = .systemGreen
+        
+        getTodos()
+    }
+    
+    //MARK: - getTodos
+    
+    private func getTodos() {
         todoService.getTodos { result in
             switch result {
             case .success(let todos):
@@ -34,7 +38,5 @@ final class TodoListVC: UIViewController {
                 print(error)
             }
         }
-        
-        view.backgroundColor = .systemGreen
     }
 }

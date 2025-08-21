@@ -1,10 +1,3 @@
-//
-//  TodoModel.swift
-//  TodoListApp
-//
-//  Created by Дима Тарасов on 24.07.2025.
-//
-
 import Foundation
 
 struct TodoModel: Codable {
