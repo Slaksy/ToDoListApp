@@ -1,10 +1,3 @@
-//
-//  AppDelegate.swift
-//  TodoListApp
-//
-//  Created by Дима Тарасов on 22.07.2025.
-//
-
 import UIKit
 
 @main
@@ -20,14 +13,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         setupWindow() // TODO: место где нужно что-то доделать
         
         return true
-    }
+    }	
 
     // MARK: - Private Methods
     
     private func setupWindow() {
         window = UIWindow(frame: UIScreen.main.bounds)
         
-        let vc = ViewController()
+        let vc = TodoListVC()
         let navigationController = UINavigationController(rootViewController: vc)
         
         window?.rootViewController = navigationController
